@@ -81,7 +81,6 @@ public class GPSListener implements LocationListener {
         	player.longitude = Double.toString(longitude);
         	player.latitude = Double.toString(latitude);
         	player.isSetComplete = true;
-        	
         } 
 	}
 	

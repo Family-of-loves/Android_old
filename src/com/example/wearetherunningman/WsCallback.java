@@ -12,7 +12,7 @@ import org.json.JSONObject;
 
 public class WsCallback  implements IOCallback, IOAcknowledge {
     
-	 Array arr=new Array();	
+	//Array arr=new Array();	
 	private WsCallbackInterface callback;
     
     public WsCallback(WsCallbackInterface callback) {
@@ -21,22 +21,18 @@ public class WsCallback  implements IOCallback, IOAcknowledge {
 
 	@Override
 	public void ack(Object... data) {
-        try {
-			callback.callback(new JSONArray(Arrays.asList(data)));
+      /*  try {
+		//	callback.callback(new JSONArray(Arrays.asList(data)));
 		} catch (JSONException e) {
 			e.printStackTrace();
-		}
+		}*/
     }
 
 	@Override
     public void on(String event, IOAcknowledge ack, Object... args) {
-		if ("data-changed".equals(event) && args.length > 0) {
-			
-			
+		if ("data-changed".equals(event) && args.length > 0) {			
 			Object[] recv = args;
-			
 			String jt = recv[0].toString();
-			
 			JSONObject jsondata = null;
 						
 			try {
@@ -45,12 +41,10 @@ public class WsCallback  implements IOCallback, IOAcknowledge {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		
-			arr.compare(jsondata);
-			
+			//arr.compare(jsondata);
         }
-   
     }
+	
     @Override
     public void onMessage(JSONObject json, IOAcknowledge ack) {
     	 try {

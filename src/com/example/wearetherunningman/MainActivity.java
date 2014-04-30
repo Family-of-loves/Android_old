@@ -3,7 +3,9 @@ package com.example.wearetherunningman;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.location.Location;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,10 +15,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-
 public class MainActivity extends ActionBarActivity {
 
 	Player player;
+	WsCallbackInterface callback;
+	WsConn ws = new WsConn(callback);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +27,13 @@ public class MainActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_main);
 		
 		Button sendbutton=(Button)findViewById(R.id.button01);	
-		Button ackbutton=(Button)findViewById(R.id.button02);	
+		Button ackbutton=(Button)findViewById(R.id.button02);
 
-		//socket.joinRoom("안드로이드23", "hagi4u");
-		// 사용자 정보 입력 다이어로그에서 입력하면 변수 대입시킴
-		
+		ws.run("http://dev.hagi4u.net:3300");
+
 		sendbutton.setOnClickListener(new Button.OnClickListener(){
 			@Override
-			public void onClick(View v) {  // 버튼 클릭신
+			public void onClick(View v) {  // 버튼 클릭시
 				// TODO Auto-generated method stub
 				Toast.makeText(getApplicationContext(), "사용자 생성!",  Toast.LENGTH_SHORT).show();
 				player = new Player("0","정명학","1","0",getApplicationContext());
@@ -40,13 +42,28 @@ public class MainActivity extends ActionBarActivity {
 
 		ackbutton.setOnClickListener(new Button.OnClickListener(){
 			public void onClick(View v){
-				Toast.makeText(getApplicationContext(), player.longitude + " / " +player.latitude,  Toast.LENGTH_SHORT).show();
+				sendServer();
 			}
 		});
 	}
+	public void sendServer(){
+		new Thread(new Runnable() {           
+			public void run() {
+				while (true) {
+					try {
+						Location location = null;
+						player.gc.onLocationChanged(location);
+						ws.emitMessage(player);
+						Thread.sleep(10000);                       
+                    } catch (InterruptedException e) {
+                    	e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
@@ -70,9 +87,8 @@ public class MainActivity extends ActionBarActivity {
 	@SuppressLint("NewApi")
 	public static class PlaceholderFragment extends Fragment {
 
-		public PlaceholderFragment() {
-		}
-
+		public PlaceholderFragment() {}
+		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
