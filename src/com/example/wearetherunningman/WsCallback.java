@@ -30,7 +30,7 @@ public class WsCallback  implements IOCallback, IOAcknowledge {
 
 	@Override
     public void on(String event, IOAcknowledge ack, Object... args) {
-		if ("data-changed".equals(event) && args.length > 0) {			
+		if ("message".equals(event) && args.length > 0) {			
 			Object[] recv = args;
 			String jt = recv[0].toString();
 			JSONObject jsondata = null;

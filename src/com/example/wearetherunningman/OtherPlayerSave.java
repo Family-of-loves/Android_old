@@ -61,7 +61,7 @@ public class OtherPlayerSave {
 		}
 			
 		try {
-			otherplayer[i].name = jsondata.get("uname").toString();
+			otherplayer[i].name = jsondata.get("username").toString();
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -74,13 +74,13 @@ public class OtherPlayerSave {
 			e.printStackTrace();
 		}
 		try {
-			otherplayer[i].latitude = jsondata.get("gps_data1").toString();
+			otherplayer[i].latitude = jsondata.get("latitude").toString();
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			otherplayer[i].longitude = jsondata.get("gps_data2").toString();
+			otherplayer[i].longitude = jsondata.get("longitude").toString();
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -102,7 +102,7 @@ public class OtherPlayerSave {
 		}
 							
 		try {
-			otherplayer[j].name = jsondata.get("uname").toString();
+			otherplayer[j].name = jsondata.get("username").toString();
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -115,13 +115,13 @@ public class OtherPlayerSave {
 			e.printStackTrace();
 		}
 		try {
-			otherplayer[j].latitude = jsondata.get("gps_data1").toString();
+			otherplayer[j].latitude = jsondata.get("latitude").toString();
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			otherplayer[j].longitude = jsondata.get("gps_data2").toString();
+			otherplayer[j].longitude = jsondata.get("longitude").toString();
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
