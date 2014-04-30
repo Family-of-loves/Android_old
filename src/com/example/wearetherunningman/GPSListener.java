@@ -83,13 +83,7 @@ public class GPSListener implements LocationListener {
         	player.isSetComplete = true;
         } 
 	}
-	
-	public void onProviderDisabled(String provider) {
-    }
-
-    public void onProviderEnabled(String provider) {
-    }
-
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-    }
+	public void onProviderDisabled(String provider) {}
+    public void onProviderEnabled(String provider) {}
+    public void onStatusChanged(String provider, int status, Bundle extras) {}
 }

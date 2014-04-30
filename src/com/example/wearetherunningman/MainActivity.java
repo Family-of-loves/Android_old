@@ -1,11 +1,9 @@
 package com.example.wearetherunningman;
 
-
 import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,7 +27,7 @@ public class MainActivity extends ActionBarActivity {
 		Button sendbutton=(Button)findViewById(R.id.button01);	
 		Button ackbutton=(Button)findViewById(R.id.button02);
 
-		ws.run("http://dev.hagi4u.net:3300");
+		ws.run("http://dev.hagi4u.net:3000");
 
 		sendbutton.setOnClickListener(new Button.OnClickListener(){
 			@Override
@@ -42,6 +40,7 @@ public class MainActivity extends ActionBarActivity {
 
 		ackbutton.setOnClickListener(new Button.OnClickListener(){
 			public void onClick(View v){
+				ws.emitJoin("hagi4u", player.name);
 				sendServer();
 			}
 		});
@@ -68,7 +67,6 @@ public class MainActivity extends ActionBarActivity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle action bar item clicks here. The action bar will
@@ -80,20 +78,17 @@ public class MainActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
 	@SuppressLint("NewApi")
 	public static class PlaceholderFragment extends Fragment {
-
 		public PlaceholderFragment() {}
-		
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main, container,
-					false);
+			Bundle savedInstanceState) {
+			View rootView = inflater.inflate(R.layout.fragment_main, container,false);
+			
 			return rootView;
 		}
 	}

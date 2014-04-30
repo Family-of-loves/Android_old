@@ -15,7 +15,6 @@ public class WsConn extends Application {
 	public WsConn(WsCallbackInterface callback){
 		this.callback = new WsCallback(callback);
 	}
-    
     public void run(String URL) {
     	try {
 			socket = new SocketIO(URL, callback);
@@ -23,21 +22,21 @@ public class WsConn extends Application {
 			e.printStackTrace();
 		}
     }
-    
     // 메시지 전달
     public void emitMessage(Player p) {
     	JSONObject json = new JSONObject();
     	try {
     		json.put("uid", p.id);
-		    json.put("uname", p.name);
+		    json.put("username", p.name);
 		    json.put("team",p.team);
             json.put("latitude", p.latitude);
             json.put("longitude", p.longitude);
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
-        socket.emit("data-changed", json);
+        socket.emit("message", json);
     }
+    
     // 방 참가 메소드 
     public void emitJoin(String roomId, String userName ){
     	try {
