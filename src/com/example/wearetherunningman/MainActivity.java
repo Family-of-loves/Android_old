@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
@@ -18,6 +19,12 @@ public class MainActivity extends ActionBarActivity {
 	Player player;
 	WsCallbackInterface callback;
 	WsConn ws = new WsConn(callback);
+	
+
+	EditText name;	//이름을 입력받음
+	EditText room ; // 방이름 입력 받음
+	String inPutNAME; // 입력받은 값을 변수화
+	String inPutROOM;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +34,9 @@ public class MainActivity extends ActionBarActivity {
 		Button sendbutton=(Button)findViewById(R.id.button01);	
 		Button ackbutton=(Button)findViewById(R.id.button02);
 
+		name = (EditText) findViewById(R.id.edittext01);
+		room = (EditText) findViewById(R.id.edittext02);
+		
 		ws.run("http://dev.hagi4u.net:3000");
 
 		sendbutton.setOnClickListener(new Button.OnClickListener(){
@@ -34,13 +44,16 @@ public class MainActivity extends ActionBarActivity {
 			public void onClick(View v) {  // 버튼 클릭시
 				// TODO Auto-generated method stub
 				Toast.makeText(getApplicationContext(), "사용자 생성!",  Toast.LENGTH_SHORT).show();
-				player = new Player("0","정명학","1","0",getApplicationContext());
+				inPutNAME = name.getText().toString();  //입력한 값을 변수화 시킴
+				inPutROOM = room.getText().toString();
+				
+				player = new Player("0",inPutNAME,"1","0",getApplicationContext());
 			}
 		});
 
 		ackbutton.setOnClickListener(new Button.OnClickListener(){
 			public void onClick(View v){
-				ws.emitJoin("hagi4u", player.name);
+				ws.emitJoin(inPutROOM, player.name);
 				sendServer();
 			}
 		});

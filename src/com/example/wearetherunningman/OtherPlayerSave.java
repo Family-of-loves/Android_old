@@ -5,18 +5,18 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
-public class Array {
+public class OtherPlayerSave {
 
-	Player[] player = new Player[20]; // 객체배열 
+	OtherPlayer[] otherplayer = new OtherPlayer[20]; // 객체배열 
 	int j=0;
 	
-	/*public Array(){
-		for (int i = 0; i < player.length; i++)  // 객체배열 초기화!!
+	public OtherPlayerSave(){
+		for (int i = 0; i < otherplayer.length; i++)  // 객체배열 초기화!!
 				{
-					player[i] = new Player();
-					player[i].id=null;
+					otherplayer[i] = new OtherPlayer();
+					otherplayer[i].id=null;
 				}
-	}*/
+	}
 	
 	public void compare(JSONObject jsondata) {
 		// TODO Auto-generated method stub
@@ -30,9 +30,9 @@ public class Array {
 		
 		Log.i("받은 id",receive_uid);
 		///해결할 부분
-		for(int k=0; k<player.length; k++){
+		for(int k=0; k<otherplayer.length; k++){
 			
-			if(receive_uid.equals(player[k].id)){ // 받아온 아이디를 배열0부터 비교.. 같은게 있다면
+			if(receive_uid.equals(otherplayer[k].id)){ // 받아온 아이디를 배열0부터 비교.. 같은게 있다면
 				array_update(jsondata,k);			// 갱신
 				break;
 				
@@ -54,40 +54,40 @@ public class Array {
 	void array_update(JSONObject jsondata,int i){
 		
 		try {
-				player[i].id = jsondata.get("uid").toString();
+				otherplayer[i].id = jsondata.get("uid").toString();
 		} catch (JSONException e1) {
 				// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 			
 		try {
-			player[i].name = jsondata.get("uname").toString();
+			otherplayer[i].name = jsondata.get("uname").toString();
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			player[i].team = jsondata.get("team").toString();
+			otherplayer[i].team = jsondata.get("team").toString();
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			player[i].latitude = jsondata.get("gps_data1").toString();
+			otherplayer[i].latitude = jsondata.get("gps_data1").toString();
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			player[i].longitude = jsondata.get("gps_data2").toString();
+			otherplayer[i].longitude = jsondata.get("gps_data2").toString();
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println(i);		
 		
-		Log.i("갱신됨",player[i].id+""+player[i].name);
+		Log.i("갱신됨",otherplayer[i].id+""+otherplayer[i].name);
 		}
 		
 		
@@ -95,33 +95,33 @@ public class Array {
 		void array_insert(JSONObject jsondata){
 				
 		try {
-				player[j].id = jsondata.get("uid").toString();
+			otherplayer[j].id = jsondata.get("uid").toString();
 		} catch (JSONException e1) {
 				// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 							
 		try {
-			player[j].name = jsondata.get("uname").toString();
+			otherplayer[j].name = jsondata.get("uname").toString();
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			player[j].team = jsondata.get("team").toString();
+			otherplayer[j].team = jsondata.get("team").toString();
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			player[j].latitude = jsondata.get("gps_data1").toString();
+			otherplayer[j].latitude = jsondata.get("gps_data1").toString();
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			player[j].longitude = jsondata.get("gps_data2").toString();
+			otherplayer[j].longitude = jsondata.get("gps_data2").toString();
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -129,7 +129,7 @@ public class Array {
 		
 		System.out.println(j);		
 		
-		Log.i("생성됨",player[j].id+""+player[j].name);
+		Log.i("생성됨",otherplayer[j].id+""+otherplayer[j].name);
 		j++; // 배열 인덱스 증가
 		}
 		

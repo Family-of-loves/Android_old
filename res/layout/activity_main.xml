@@ -9,10 +9,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="아이디"
+        android:text="사용자"
         tools:context=".MainActivity" />
     <EditText
         android:id="@+id/edittext01" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        tools:context=".MainActivity" />
+    
+    <TextView
+        android:id="@+id/text02" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="방이름"
+        tools:context=".MainActivity" />
+    <EditText
+        android:id="@+id/edittext02" 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -24,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="보내기"
+        android:text="사용자생성"
         tools:context=".MainActivity" />
    
     <Button
@@ -32,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="확인"
+        android:text="입장"
         tools:context=".MainActivity" />
    
    
