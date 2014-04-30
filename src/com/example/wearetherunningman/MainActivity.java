@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 /*
- * 흥 내가작성했
+ * 흥 내가작성했어1
  * */
 public class MainActivity extends ActionBarActivity {
 
